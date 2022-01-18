@@ -42,3 +42,29 @@ AWS_HEADERS = {
 ```
 
 
+Next, do to Django S3 File Browser configuration:
+```
+S3_BROWSER_SETTINGS = "djangoS3Browser"
+```
+
+Next, add to TEMPLATES['OPTIONS'] in settings.py:
+```
+'libraries': {
+    's3-load': 'djangoS3Browser.templatetags.s3tags',
+},
+```
+
+Then, add to urls.py:
+```
+url(r'^' + settings.S3_BROWSER_SETTINGS + '/', include('djangoS3Browser.s3_browser.urls')),
+```
+
+Then, add this to the top of the page you want to add:
+```
+{% load s3tags %}
+```
+
+Finally, add this to the content of the page you want to add:
+```
+{% load_s3 %}
+```
